@@ -2,14 +2,14 @@ docker images
 docker ps -a
 docker pull image_name
 
+# MARIADB dbserver
+docker run -d -p 33061:3306 --name dbserver -v /Users/alexcpl/docker/databases/mariadb:/var/lib/mysql  -e MYSQL_ROOT_PASSWORD=test mariadb
+
 # NGINX Webserver
 docker run -d -p 80:80 --name nginxweb -v /Users/alexcpl/docker/env/nginx.conf:/etc/nginx/nginx.conf:ro -v /Users/alexcpl/code/vuejs/app01/www:/usr/share/nginx/html nginx
 
 # APACHE PHP Webserver
-docker run -d -p 80:80 -p 443:443 -v /Users/alexcpl/code/php/app01/www:/var/www/html nimmis/apache-php7
-
-# MARIADB dbserver
-docker run -d -p 33061:3306 --name dbserver -v /Users/alexcpl/docker/databases/mariadb:/var/lib/mysql  -e MYSQL_ROOT_PASSWORD=test mariadb
+docker run -d -p 80:80 -p 443:443 -v /Users/alexcpl/code/php/app01/www:/var/www/html --link dbserver:mysql nimmis/apache-php7
 
 # Make requirements.txt file
 pip3 freeze > requirements.txt
