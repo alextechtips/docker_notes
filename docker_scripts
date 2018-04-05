@@ -1,3 +1,5 @@
+docker images
+docker ps -a
 docker pull image_name
 
 # NGINX Webserver
