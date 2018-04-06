@@ -7,7 +7,7 @@ docker pull image_name
 docker run -d -p 33061:3306 --name dbserver -v /Users/alexcpl/docker/databases/mariadb:/var/lib/mysql  -e MYSQL_ROOT_PASSWORD=test mariadb
 
 # MONGODB mongodb
-docker run -d -p 27017:27017 --name mongodb -v $(pwd)/database:/data mongo mongod
+docker run -d -p 27017:27017 --name mongodb -v $(pwd)/database:/data -v $(pwd)/database/db:/data/db -v $(pwd)//database/configdb:/data/configdb mongo mongod
 
 # NGINX Webserver
 docker run -d -p 80:80 --name nginxweb -v /Users/alexcpl/docker/env/nginx.conf:/etc/nginx/nginx.conf:ro -v /Users/alexcpl/code/vuejs/app01/www:/usr/share/nginx/html nginx
@@ -24,6 +24,7 @@ RUN mkdir /opt/myflaskapp
 WORKDIR /opt/myflaskapp
 COPY requirements.txt /opt/myflaskapp
 RUN pip install --no-cache-dir -r requirements.txt
+
 COPY . /opt/myflaskapp
 CMD ["python3.6", "app.py"]
 # --END Dockerfile
@@ -36,3 +37,6 @@ docker run -i -d -p 80:5000 --name myflaskapp -v /Users/alexcpl/code/python/myfl
 
 # node-server
 docker run -d -p 3001:3001 --name node-server_1 -v $(pwd):/opt/nodeapp --link mongodb:mongodb node-server
+./nodeapp/database:/data
+      - ./nodeapp
+      - ./nodeapp
