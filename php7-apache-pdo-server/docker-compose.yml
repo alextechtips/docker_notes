@@ -1,0 +1,25 @@
+version: '3.1'
+services:
+  php-server:
+    image: php7-apache-pdo:1.0
+    container_name: my-web-container
+    restart: always
+    volumes:
+      - ./www:/var/www/html
+    ports:
+      - 8080:80
+    links:
+      - mysqlserver:mysql
+    depends_on:
+      - mysqlserver
+
+  mysqlserver:
+    image: mariadb
+    container_name: my-db-container
+    restart: always
+    volumes:
+      - ./databases:/var/lib/mysql
+    ports:
+      - 33061:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: test
