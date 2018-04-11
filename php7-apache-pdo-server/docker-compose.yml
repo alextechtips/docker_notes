@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   php-server:
-    image: php7-apache-pdo:1.0
+    image: php7-apache-pdo:1.1
     container_name: my-web-container
     restart: always
     volumes:
