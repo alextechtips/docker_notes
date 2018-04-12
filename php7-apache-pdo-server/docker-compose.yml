@@ -6,6 +6,7 @@ services:
     restart: always
     volumes:
       - ./www:/var/www/html
+      - ./conf/my-httpd.conf:/usr/local/apache2/conf/httpd.conf
     ports:
       - 8080:80
     links:
