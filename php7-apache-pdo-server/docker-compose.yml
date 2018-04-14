@@ -24,3 +24,6 @@ services:
       - 33061:3306
     environment:
       MYSQL_ROOT_PASSWORD: test
+      MYSQL_DATABASE: attend_db
+      MYSQL_USER: attend_admin
+      MYSQL_PASSWORD: 5brplonhb9fdc
