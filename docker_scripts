@@ -37,3 +37,6 @@ docker run -i -d -p 80:5000 --name myflaskapp -v /Users/alexcpl/code/python/myfl
 
 # node-server
 docker run -d -p 3001:3001 --name node-server_1 -v $(pwd):/opt/nodeapp --link mongodb:mongodb node-server
+
+# Git command change remote url
+git remote set-url origin <new url>
