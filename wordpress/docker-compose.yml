@@ -1,0 +1,27 @@
+version: '3.1'
+services:
+  my-wordpress:
+    image: wordpress:php7.2-apache
+    container_name: my-wp-container
+    restart: always
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    ports:
+      - 80:80
+    links:
+      - mysqlserver:mysql
+    depends_on:
+      - mysqlserver
+
+  mysqlserver:
+    image: mariadb:latest
+    container_name: my-db-container
+    restart: always
+    volumes:
+      - ./database:/var/lib/mysql
+    ports:
+      - 33061:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_USER: something_special
+      MYSQL_PASSWORD: something_secret
