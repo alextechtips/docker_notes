@@ -11,11 +11,13 @@ docker ps -a
 docker exec -it {container ID} bash
 
 # To install nginx
--apt update
--apt upgrade
--apt install nginx
--apt install curl
--service reload nginx
--service restart nginx
--curl localhost
+apt update  
+apt upgrade  
+apt install nginx  
+apt install curl  
+service reload nginx  
+service restart nginx  
+curl localhost  
+
+
 
